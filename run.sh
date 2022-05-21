@@ -16,3 +16,4 @@ echo "Download tools"
 sudo docker pull nft9/ztool:stable
 echo "Start tool"
 sudo docker run -p 80:8686 --rm --name ztool -v $PWD/data:/home/ztooluser/data:Z --cap-add=SYS_ADMIN nft9/ztool:stable &
+echo "Done"
