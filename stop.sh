@@ -6,3 +6,4 @@ sudo service docker start
 echo "Stop running instance"
 sudo docker ps -q --filter name=ztool | xargs -r sudo docker stop
 fi
+echo "Done"
