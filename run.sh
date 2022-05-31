@@ -15,7 +15,5 @@ sudo mkdir -p ./data && sudo chmod +x ./data
 echo "Download tools"
 sudo docker pull nft9/ztool:stable
 echo "Start tool"
-echo "* hard nofile 999999" >/etc/security/limits.conf
-echo "* soft nofile 888888" >>/etc/security/limits.conf
-sysctl -p
+ulimit -n 65535
 sudo docker run -p 80:8686 --rm --name ztool -v $PWD/data:/home/ztooluser/data:Z --cpus="0.8" --dns="1.1.1.1" --dns="1.0.0.1" --cap-add=SYS_ADMIN nft9/ztool:stable &
