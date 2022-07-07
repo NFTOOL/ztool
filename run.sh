@@ -15,7 +15,7 @@ sudo mkdir -p ./data && sudo chmod +x ./data
 echo "Download tools"
 sudo docker pull nft9/ztool:stable
 echo "Start tool"
-ulimit -n 65535
+ulimit -n 99999
 sudo mkdir -p /mnt/ztool/profiles
 sudo chmod 777 /mnt/ztool/profiles
 sudo docker run -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z -v /dev/shm:/dev/shm -p 80:8686 --rm --name ztool --dns="1.1.1.1" --dns="1.0.0.1" --cap-add=SYS_ADMIN nft9/ztool:stable
