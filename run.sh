@@ -19,6 +19,9 @@ ulimit -n 99999
 sudo mkdir -p /mnt/ztool/profiles
 sudo chmod 777 /mnt/ztool/profiles
 
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
 sudo sysctl fs.inotify.max_user_instances=8192
 sudo sysctl fs.inotify.max_user_watches=1048576
 sudo sysctl -p
