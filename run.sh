@@ -26,4 +26,4 @@ sudo sysctl fs.inotify.max_user_instances=8192
 sudo sysctl fs.inotify.max_user_watches=1048576
 sudo sysctl -p
 
-sudo docker run --network=host --shm-size=10gb -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z -v /dev/shm:/dev/shm -p 80:8686 --rm --name ztool --dns="1.1.1.1" --dns="1.0.0.1" --cap-add=SYS_ADMIN nft9/ztool:stable
+sudo docker run --shm-size=10gb -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z -v /dev/shm:/dev/shm -p 80:8686 --rm --name ztool --dns="1.1.1.1" --dns="1.0.0.1" --cap-add=SYS_ADMIN nft9/ztool:stable
