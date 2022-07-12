@@ -14,16 +14,36 @@ echo "Create data directory"
 sudo mkdir -p ./data && sudo chmod +x ./data
 echo "Download tools"
 sudo docker pull nft9/ztool:stable
-echo "Start tool"
-ulimit -n 99999
-sudo mkdir -p /mnt/ztool/profiles
-sudo chmod 777 /mnt/ztool/profiles
 
-sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
+echo "Tunning system"
+cat>/etc/sysctl.conf<<EOF
+fs.file-max=999999
+fs.nr_open=999999
+net.ipv4.ip_local_port_range=1024 65000
+net.ipv4.tcp_keepalive_time=60
+net.ipv4.tcp_keepalive_probes=3
+net.ipv4.tcp_keepalive_intvl=90
+net.ipv4.tcp_max_syn_backlog=100000
+net.core.somaxconn = 100000
+net.core.netdev_max_backlog = 100000
+EOF
+
+cat>/etc/security/limits.conf<<EOF
+* hard nofile 999999
+* soft nofile 999999
+EOF
 
 sudo sysctl fs.inotify.max_user_instances=8192
 sudo sysctl fs.inotify.max_user_watches=1048576
+ulimit -n 99999
+
 sudo sysctl -p
 
+#end tunning
+
+sudo mkdir -p /mnt/ztool/profiles
+sudo chmod 777 /mnt/ztool/profiles
+
+echo "Start tool"
 sudo docker run --shm-size=10gb -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z -v /dev/shm:/dev/shm -p 80:8686 --rm --name ztool --dns="1.1.1.1" --dns="1.0.0.1" --cap-add=SYS_ADMIN nft9/ztool:stable
