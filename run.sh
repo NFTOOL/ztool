@@ -56,4 +56,23 @@ sudo mkdir -p /mnt/ztool/profiles
 sudo chmod 777 /mnt/ztool/profiles
 
 echo "Start tool"
-sudo docker run --sysctl net.ipv4.ip_local_port_range="1024 65000" --shm-size=10gb -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z -v /dev/shm:/dev/shm -p 80:8686 --rm --name ztool --dns="1.1.1.1" --dns="1.0.0.1" --cap-add=SYS_ADMIN nft9/ztool:stable
+sudo docker run \
+  --sysctl net.ipv4.ip_local_port_range="1024 65000" \
+  --sysctl net.ipv4.tcp_keepalive_time="60" \
+  --sysctl net.ipv4.tcp_keepalive_probes="3" \
+  --sysctl net.ipv4.tcp_keepalive_intvl="90" \
+  --sysctl net.ipv4.tcp_max_syn_backlog="100000" \
+  --sysctl net.core.somaxconn = "100000" \
+  --sysctl net.core.netdev_max_backlog = "100000" \
+  --sysctl net.ipv4.tcp_fin_timeout=10 \
+  --sysctl net.ipv4.tcp_syncookies=0 \
+  --shm-size=10gb \
+  -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z \
+  -v /dev/shm:/dev/shm \
+  -p 80:8686 \
+  --rm \
+  --name ztool \
+  --dns="1.1.1.1" \
+  --dns="1.0.0.1" \
+  --cap-add=SYS_ADMIN \
+  nft9/ztool:stable
