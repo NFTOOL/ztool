@@ -28,6 +28,11 @@ net.ipv4.tcp_keepalive_intvl=90
 net.ipv4.tcp_max_syn_backlog=100000
 net.core.somaxconn = 100000
 net.core.netdev_max_backlog = 100000
+# Timeout in seconds to close client connections in
+# TIME_WAIT after receiving FIN packet.
+net.ipv4.tcp_fin_timeout = 10
+# Disable SYN cookie flood protection
+net.ipv4.tcp_syncookies = 0
 EOF'
 
 sudo bash -c 'cat>/etc/security/limits.conf<<EOF
@@ -39,6 +44,8 @@ EOF'
 
 sudo sysctl fs.inotify.max_user_instances=8192
 sudo sysctl fs.inotify.max_user_watches=1048576
+sudo sysctl -w kernel.threads-max=3261780
+
 ulimit -n 99999
 ulimit -u 99999
 sudo sysctl -p
