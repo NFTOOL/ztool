@@ -33,12 +33,14 @@ EOF'
 sudo bash -c 'cat>/etc/security/limits.conf<<EOF
 * hard nofile 999999
 * soft nofile 999999
+* hard nproc  999999
+* soft nproc  999999
 EOF'
 
 sudo sysctl fs.inotify.max_user_instances=8192
 sudo sysctl fs.inotify.max_user_watches=1048576
 ulimit -n 99999
-
+ulimit -u 99999
 sudo sysctl -p
 
 #end tunning
