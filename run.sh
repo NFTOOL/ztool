@@ -19,6 +19,10 @@ sudo docker pull nft9/ztool:stable
 echo "Tunning system"
 
 sudo bash -c 'cat>/etc/sysctl.conf<<EOF
+# SWAP settings
+vm.swappiness=0
+vm.overcommit_memory=1
+
 fs.file-max=999999
 fs.nr_open=999999
 net.ipv4.ip_local_port_range=1024 65000
@@ -33,6 +37,30 @@ net.core.netdev_max_backlog = 100000
 net.ipv4.tcp_fin_timeout = 10
 # Disable SYN cookie flood protection
 net.ipv4.tcp_syncookies = 0
+
+# 16MB per socket - which sounds like a lot,
+# but will virtually never consume that much.
+net.core.rmem_max=16777216
+net.core.wmem_max=16777216
+
+# Various network tunables
+net.ipv4.tcp_max_syn_backlog=20480
+net.ipv4.tcp_max_tw_buckets=400000
+net.ipv4.tcp_no_metrics_save=1
+net.ipv4.tcp_rmem=4096 87380 16777216
+net.ipv4.tcp_syn_retries=2
+net.ipv4.tcp_synack_retries=2
+net.ipv4.tcp_wmem=4096 65536 16777216
+
+# ARP cache settings for a highly loaded docker swarm
+net.ipv4.neigh.default.gc_thresh1=8096
+net.ipv4.neigh.default.gc_thresh2=12288
+net.ipv4.neigh.default.gc_thresh3=16384
+# monitor file system events
+fs.inotify.max_user_instances=8192
+fs.inotify.max_user_watches=1048576
+#max threads count
+kernel.threads-max=3261780
 EOF'
 
 sudo bash -c 'cat>/etc/security/limits.conf<<EOF
@@ -42,12 +70,6 @@ sudo bash -c 'cat>/etc/security/limits.conf<<EOF
 * soft nproc  999999
 EOF'
 
-sudo sysctl fs.inotify.max_user_instances=8192
-sudo sysctl fs.inotify.max_user_watches=1048576
-sudo sysctl -w kernel.threads-max=3261780
-
-ulimit -n 99999
-ulimit -u 99999
 sudo sysctl -p
 
 #end tunning
@@ -63,7 +85,7 @@ sudo docker run \
   --sysctl net.ipv4.tcp_keepalive_intvl="90" \
   --sysctl net.ipv4.tcp_max_syn_backlog="100000" \
   --sysctl net.core.somaxconn="100000" \
-  --sysctl net.core.netdev_max_backlog="100000" \
+  #--sysctl net.core.netdev_max_backlog="100000" \
   --sysctl net.ipv4.tcp_fin_timeout=10 \
   --sysctl net.ipv4.tcp_syncookies=0 \
   --shm-size=10gb \
