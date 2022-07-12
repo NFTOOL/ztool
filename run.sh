@@ -17,7 +17,8 @@ sudo docker pull nft9/ztool:stable
 
 
 echo "Tunning system"
-cat>/etc/sysctl.conf<<EOF
+
+sudo bash -c 'cat>/etc/sysctl.conf<<EOF
 fs.file-max=999999
 fs.nr_open=999999
 net.ipv4.ip_local_port_range=1024 65000
@@ -27,12 +28,12 @@ net.ipv4.tcp_keepalive_intvl=90
 net.ipv4.tcp_max_syn_backlog=100000
 net.core.somaxconn = 100000
 net.core.netdev_max_backlog = 100000
-EOF
+EOF'
 
-cat>/etc/security/limits.conf<<EOF
+sudo bash -c 'cat>/etc/security/limits.conf<<EOF
 * hard nofile 999999
 * soft nofile 999999
-EOF
+EOF'
 
 sudo sysctl fs.inotify.max_user_instances=8192
 sudo sysctl fs.inotify.max_user_watches=1048576
