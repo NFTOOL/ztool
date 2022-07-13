@@ -43,7 +43,7 @@ net.ipv4.tcp_fin_timeout = 10
 
 # Disable SYN cookie flood protection
 net.ipv4.tcp_syncookies = 0
-net.ipv4.tcp_timestsmps= 0
+#net.ipv4.tcp_timestsmps= 0
 
 # 16MB per socket - which sounds like a lot,
 # but will virtually never consume that much.
