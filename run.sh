@@ -12,9 +12,6 @@ echo "Remove old instance"
 sudo docker image rm -f nft9/ztool:stable 2> /dev/null || true
 echo "Create data directory"
 sudo mkdir -p ./data && sudo chmod +x ./data
-echo "Download tools"
-sudo docker pull nft9/ztool:stable
-
 
 echo "Tunning system"
 
@@ -88,6 +85,9 @@ sudo sysctl -p
 
 sudo mkdir -p /mnt/ztool/profiles
 sudo chmod 777 /mnt/ztool/profiles
+
+echo "Download tools"
+sudo docker pull nft9/ztool:stable
 
 echo "Start tool"
 sudo docker run \
