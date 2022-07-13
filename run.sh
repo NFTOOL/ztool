@@ -26,11 +26,20 @@ fs.nr_open=999999
 net.ipv4.ip_local_port_range=1024 65000
 net.ipv4.tcp_keepalive_time=60
 net.ipv4.tcp_keepalive_probes=3
-net.ipv4.tcp_keepalive_intvl=20
+net.ipv4.tcp_keepalive_intvl=10
 net.ipv4.tcp_max_syn_backlog=100000
-net.netfilter.nf_conntrack_tcp_timeout_established =600
+
+net.netfilter.nf_conntrack_tcp_timeout_established=600
 net.netfilter.nf_conntrack_tcp_timeout_time_wait=10
+net.netfilter.nf_conntrack_tcp_timeout_close=10
+net.netfilter.nf_conntrack_tcp_timeout_fin_wait=10
+net.netfilter.nf_conntrack_tcp_timeout_last_ack=10
+net.netfilter.nf_conntrack_tcp_timeout_syn_recv=10
+net.netfilter.nf_conntrack_tcp_timeout_syn_sent=10
+net.netfilter.nf_conntrack_tcp_timeout_close_wait=10
 net.nf_conntrack_max = 655360
+
+
 net.core.somaxconn = 100000
 net.core.netdev_max_backlog = 100000
 
@@ -94,12 +103,15 @@ sudo docker run \
   --sysctl net.ipv4.ip_local_port_range="1024 65535" \
   --sysctl net.ipv4.tcp_keepalive_time="60" \
   --sysctl net.ipv4.tcp_keepalive_probes="3" \
-  --sysctl net.ipv4.tcp_keepalive_intvl="20" \
+  --sysctl net.ipv4.tcp_keepalive_intvl="10" \
   --sysctl net.ipv4.tcp_max_syn_backlog="100000" \
   --sysctl net.core.somaxconn="100000" \
   --sysctl net.ipv4.tcp_fin_timeout=10 \
   --sysctl net.netfilter.nf_conntrack_tcp_timeout_established=600 \
   --sysctl net.netfilter.nf_conntrack_tcp_timeout_time_wait=10 \
+  --sysctl net.netfilter.nf_conntrack_tcp_timeout_close_wait=10 \
+  --sysctl net.netfilter.nf_conntrack_tcp_timeout_close=10 \
+  --sysctl net.netfilter.nf_conntrack_tcp_timeout_fin_wait=10 \
   --sysctl net.ipv4.tcp_syncookies=0 \
   --sysctl net.ipv4.tcp_tw_reuse=1 \
   --sysctl net.ipv4.tcp_syn_retries=2 \
