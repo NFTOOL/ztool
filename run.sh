@@ -102,7 +102,7 @@ sudo docker run \
   --sysctl net.netfilter.nf_conntrack_tcp_timeout_time_wait=10 \
   --sysctl net.nf_conntrack_max=655360 \
   --sysctl net.ipv4.tcp_syncookies=0 \
-  --sysctl net.ipv4.tcp_tw_reuse= 1 \
+  --sysctl net.ipv4.tcp_tw_reuse=1 \
   --sysctl net.ipv4.tcp_syn_retries=2 \
   --sysctl net.ipv4.tcp_synack_retries=2 \
   --shm-size=10gb \
