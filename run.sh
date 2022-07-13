@@ -58,7 +58,7 @@ net.ipv4.tcp_rmem=4096 87380 16777216
 net.ipv4.tcp_syn_retries=2
 net.ipv4.tcp_synack_retries=2
 net.ipv4.tcp_tw_reuse= 1
-net.ipv4.tcp_tw_recycle = 1
+#net.ipv4.tcp_tw_recycle = 1
 
 net.ipv4.tcp_wmem=8192 436600 873200
 net.ipv4.tcp_rmem = 32768 436600 873200
