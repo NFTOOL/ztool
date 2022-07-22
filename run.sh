@@ -120,7 +120,7 @@ sudo docker run \
   -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z \
   -v /dev/shm:/dev/shm \
   -p 80:8686 \
-  -e ARGS="--auto --debug" \
+  -e XARGS="--auto --debug" \
   --rm \
   --name ztool \
   --dns="1.1.1.1" \
