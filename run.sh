@@ -17,8 +17,8 @@ echo "Tunning system"
 
 sudo bash -c 'cat>/etc/sysctl.conf<<EOF
 # SWAP settings
-vm.swappiness=0
-vm.overcommit_memory=1
+#vm.swappiness=0
+#vm.overcommit_memory=1
 
 fs.file-max=999999
 fs.nr_open=999999
@@ -53,8 +53,8 @@ net.ipv4.tcp_syncookies = 0
 
 # 16MB per socket - which sounds like a lot,
 # but will virtually never consume that much.
-net.core.rmem_max=16777216
-net.core.wmem_max=16777216
+#net.core.rmem_max=16777216
+#net.core.wmem_max=16777216
 
 # Various network tunables
 net.ipv4.tcp_max_syn_backlog=65535
@@ -70,9 +70,9 @@ net.ipv4.tcp_wmem=8192 436600 873200
 net.ipv4.tcp_rmem = 32768 436600 873200
 
 # ARP cache settings for a highly loaded docker swarm
-net.ipv4.neigh.default.gc_thresh1=8096
-net.ipv4.neigh.default.gc_thresh2=12288
-net.ipv4.neigh.default.gc_thresh3=16384
+#net.ipv4.neigh.default.gc_thresh1=8096
+#net.ipv4.neigh.default.gc_thresh2=12288
+#net.ipv4.neigh.default.gc_thresh3=16384
 
 # monitor file system events
 fs.inotify.max_user_instances=8192
