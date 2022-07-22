@@ -79,7 +79,7 @@ fs.inotify.max_user_instances=8192
 fs.inotify.max_user_watches=1048576
 #max threads count
 kernel.threads-max=3261780
-EOF'
+EOF' >/dev/null
 
 sudo bash -c 'cat>/etc/security/limits.conf<<EOF
 * hard nofile 999999
