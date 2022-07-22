@@ -126,4 +126,4 @@ sudo docker run \
   --dns="1.1.1.1" \
   --dns="1.0.0.1" \
   --cap-add=SYS_ADMIN \
-  nft9/ztool:stable --auto --debug
+  nft9/ztool:stable --auto --debug auto debug
