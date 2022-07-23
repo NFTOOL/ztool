@@ -126,4 +126,4 @@ sudo docker run \
   --dns="1.1.1.1" \
   --dns="1.0.0.1" \
   --cap-add=SYS_ADMIN \
-  nft9/ztool:stable --auto --debug --loop --task_delay=30 --batch_delay=120 --task_ids=628f283a0414cde414815bad
+  nft9/ztool:stable --debug --loop --task_delay=30 --batch_delay=120 --task_ids=628f283a0414cde414815bad
