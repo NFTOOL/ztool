@@ -48,7 +48,7 @@ net.core.netdev_max_backlog = 100000
 net.ipv4.tcp_fin_timeout = 10
 
 # Disable SYN cookie flood protection
-net.ipv4.tcp_syncookies = 0
+#net.ipv4.tcp_syncookies = 0
 #net.ipv4.tcp_timestsmps= 0
 
 # 16MB per socket - which sounds like a lot,
@@ -57,17 +57,17 @@ net.ipv4.tcp_syncookies = 0
 #net.core.wmem_max=16777216
 
 # Various network tunables
-net.ipv4.tcp_max_syn_backlog=65535
-net.ipv4.tcp_max_tw_buckets=400000
-net.ipv4.tcp_no_metrics_save=1
-net.ipv4.tcp_rmem=4096 87380 16777216
+#net.ipv4.tcp_max_syn_backlog=65535
+#net.ipv4.tcp_max_tw_buckets=400000
+#net.ipv4.tcp_no_metrics_save=1
+#net.ipv4.tcp_rmem=4096 87380 16777216
 net.ipv4.tcp_syn_retries=2
 net.ipv4.tcp_synack_retries=2
 net.ipv4.tcp_tw_reuse= 1
 #net.ipv4.tcp_tw_recycle = 1
 
-net.ipv4.tcp_wmem=8192 436600 873200
-net.ipv4.tcp_rmem = 32768 436600 873200
+#net.ipv4.tcp_wmem=8192 436600 873200
+#net.ipv4.tcp_rmem = 32768 436600 873200
 
 # ARP cache settings for a highly loaded docker swarm
 #net.ipv4.neigh.default.gc_thresh1=8096
@@ -75,8 +75,8 @@ net.ipv4.tcp_rmem = 32768 436600 873200
 #net.ipv4.neigh.default.gc_thresh3=16384
 
 # monitor file system events
-fs.inotify.max_user_instances=8192
-fs.inotify.max_user_watches=1048576
+#fs.inotify.max_user_instances=8192
+#fs.inotify.max_user_watches=1048576
 #max threads count
 kernel.threads-max=3261780
 EOF'
