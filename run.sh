@@ -17,7 +17,7 @@ echo "Tunning system"
 
 sudo bash -c 'cat>/etc/sysctl.conf<<EOF
 # SWAP settings
-vm.swappiness=30
+vm.swappiness=60
 vm.overcommit_memory=1
 
 fs.file-max=999999
