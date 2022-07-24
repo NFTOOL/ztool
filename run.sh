@@ -121,6 +121,7 @@ sudo docker run \
   -v /dev/shm:/dev/shm \
   -p 80:8686 \
   -e XARGS="--auto --debug" \
+  --init \
   --rm \
   --name ztool \
   --dns="1.1.1.1" \
