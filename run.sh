@@ -17,8 +17,8 @@ echo "Tunning system"
 
 sudo bash -c 'cat>/etc/sysctl.conf<<EOF
 # SWAP settings
-#vm.swappiness=0
-#vm.overcommit_memory=1
+vm.swappiness=30
+vm.overcommit_memory=1
 
 fs.file-max=999999
 fs.nr_open=999999
@@ -89,7 +89,7 @@ sudo bash -c 'cat>/etc/security/limits.conf<<EOF
 EOF'
 
 sudo sysctl -p
-
+ulimit -n 999999
 #end tunning
 
 sudo mkdir -p /mnt/ztool/profiles
@@ -120,7 +120,6 @@ sudo docker run \
   -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z \
   -v /dev/shm:/dev/shm \
   -p 80:8686 \
-  -e XARGS="--auto --debug" \
   --init \
   --rm \
   --name ztool \
