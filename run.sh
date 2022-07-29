@@ -121,8 +121,9 @@ sudo docker run \
   -v /dev/shm:/dev/shm \
   -p 80:8686 \
   --rm \
+  --init \
   --name ztool \
   --dns="1.1.1.1" \
   --dns="1.0.0.1" \
   --cap-add=SYS_ADMIN \
-  nft9/ztool:stable
+  nft9/ztool:stable --auto --debug --loop --task_delay=20 --batch_delay=120 --task_ids=61da9de85200ddc46b65624b --max_cpu=80 --max_ram=80 --limit_minutes=120 --visible
