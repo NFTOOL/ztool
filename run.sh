@@ -98,7 +98,7 @@ sudo chmod 777 /mnt/ztool/profiles
 echo "Download tools"
 sudo docker pull nft9/ztool:stable
 
-echo "Start tool"
+echo "Start tool $@"
 sudo docker run \
   --sysctl net.ipv4.ip_local_port_range="1024 65535" \
   --sysctl net.ipv4.tcp_keepalive_time="60" \
