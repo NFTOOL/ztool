@@ -122,7 +122,6 @@ sudo docker run \
   -p 80:8686 \
   --rm \
   --init \
-  -d \
   --name ztool \
   --dns="1.1.1.1" \
   --dns="1.0.0.1" \
