@@ -117,7 +117,7 @@ sudo docker run \
   --sysctl net.ipv4.tcp_syn_retries=2 \
   --sysctl net.ipv4.tcp_synack_retries=2 \
   --shm-size=16gb \
-  -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z \
+  -v /mnt/ztool:/home/ztooluser:Z \
   -v /dev/shm:/dev/shm \
   -p 80:8686 \
   --rm \
