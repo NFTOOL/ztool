@@ -119,6 +119,7 @@ sudo docker run \
   --shm-size=16gb \
   -v /mnt/ztool/profiles:/home/ztooluser/profiles:Z \
   -v /dev/shm:/dev/shm \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
   -p 80:8686 \
   --rm \
   --init \
